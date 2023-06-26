@@ -1,29 +1,44 @@
-
-//
 fetch("http://localhost:3000/characters")
   .then(response => response.json())
   .then(jsData => {
-    for (charactersObj of jsData) {
+    for (const charactersObj of jsData) {
       console.log(charactersObj.name);
 
       // Create an li element
-      let liElement = document.createElement('li');
+      const liElement = document.createElement('li');
+      liElement.innerText = charactersObj.name;
 
-      // Create an image element
-      let imgElement = document.createElement('img');
-      imgElement.src = charactersObj.image;
-      imgElement.alt = charactersObj.name;
-      imgElement.width = 100;
-      imgElement.height = 100;
+      const imgElement = document.createElement('img');
 
       // Create a span element for displaying votes
-      let votesSpan = document.createElement('span');
-      votesSpan.textContent = `Votes: ${charactersObj.votes}`;
+      const votesSpan = document.createElement('span');
+      let votesSpanc = 0;
+      votesSpan.textContent = `Votes: ${votesSpanc}`;
 
-      // Append name, image, and votes to the li element
-      liElement.appendChild(document.createTextNode(charactersObj.name));
+      // Create a button for voting
+      const voteBtn = document.createElement('button');
+      voteBtn.innerText = 'Vote';
+      voteBtn.addEventListener('click', voteCount);
+
+      function voteCount() {
+        votesSpanc++;
+        votesSpan.textContent = `Votes: ${votesSpanc}`;
+      }
+
+      liElement.addEventListener('click', ((obj) => {
+        return () => {
+          // Create an image element
+          imgElement.src = obj.image;
+          imgElement.alt = obj.name;
+          imgElement.width = 100;
+          imgElement.height = 100;
+        };
+      })(charactersObj));
+
+      // Append the image, votes, and vote button to the li element
       liElement.appendChild(imgElement);
       liElement.appendChild(votesSpan);
+      liElement.appendChild(voteBtn);
 
       // Append the li element to the animalList ul
       animalList.appendChild(liElement);
