@@ -1,0 +1,46 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #210b7654;
+  padding: 30px;
+  text-align: center;
+}
+
+h1 {
+  margin: 5px;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+#animalList {
+  flex-basis: 50%;
+  
+}
+
+#animalDetails {
+  flex-basis: 60%;
+}
+
+ul {
+  list-style: none;
+  padding: 5px;
+}
+
+li {
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #c1b43f;
+}
+
+li:hover {
+  background-color: #1ca5a5;
+}
